@@ -13,10 +13,10 @@ export const useUserStore = defineStore('user', {
       setToken(res.data.token);
     },
     async getUserInfo() {
-      const res = await userApi.getInfo();
-      this.userInfo = res.data;
-      this.roles = res.data.roles;
-      this.permissions = res.data.permissions;
+      const res = await userApi.getInfo() as unknown as UserInfo;
+      this.userInfo = res;
+      this.roles = res.roles;
+      this.permissions = res.permissions;
     },
     async logout() { await userApi.logout(); this.resetState(); },
     resetState() { this.token = ''; this.userInfo = null; this.roles = []; this.permissions = []; removeToken(); },

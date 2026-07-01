@@ -54,17 +54,29 @@ lib/
 └── main.dart         # App entry point
 ```
 
-## Quick Start
+## Prerequisites
+
+- Flutter SDK 3.x
+- Android SDK (API level 21+)
+- Android build tools
+
+## Build APK
 
 ```bash
+# Install dependencies
 flutter pub get
-flutter run              # Debug mode
-flutter run --release    # Release mode
-flutter build apk        # Build Android APK
-flutter build ios        # Build iOS
+
+# Build release APK
+flutter build apk --release
 ```
 
-## Configuration
+Output: `build/app/outputs/flutter-apk/app-release.apk`
+
+## Build with Custom API URL
+
+```bash
+flutter build apk --release --dart-define=API_BASE_URL=https://api.globalfx.com
+```
 
 ```dart
 // lib/config/env_config.dart

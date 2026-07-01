@@ -14,7 +14,7 @@ class AppTheme {
       scaffoldBackgroundColor: const Color(0xFFF5F5F5),
       textTheme: GoogleFonts.interTextTheme(),
       appBarTheme: const AppBarTheme(backgroundColor: Colors.white, foregroundColor: Color(0xFF333333), elevation: 0, centerTitle: true),
-      cardTheme: CardTheme(color: Colors.white, elevation: 1, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+      cardTheme: CardThemeData(color: Colors.white, elevation: 1, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(backgroundColor: primaryColor, foregroundColor: Colors.white, minimumSize: const Size(double.infinity, 48), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
       ),

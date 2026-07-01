@@ -5,7 +5,7 @@
       <el-form-item label="Symbol"><el-input v-model="query.symbol" placeholder="Symbol" clearable /></el-form-item>
       <el-form-item label="Status"><el-select v-model="query.status" placeholder="Status" clearable><el-option label="Pending" value="pending" /><el-option label="Filled" value="filled" /><el-option label="Cancelled" value="cancelled" /></el-select></el-form-item>
     </SearchForm>
-    <DataTable :data="data" :loading="loading" :total="total" v-model:page="page" v-model:limit="limit" @page-change="fetchData" show-actions actions-width="120">
+    <DataTable :data="data" :loading="loading" :total="total" v-model:page="page" v-model:limit="limit" @page-change="fetchData" show-actions :actions-width="120">
       <el-table-column prop="id" label="ID" width="120" />
       <el-table-column prop="accountNo" label="Account" width="120" />
       <el-table-column prop="symbol" label="Symbol" width="100" />
