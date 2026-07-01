@@ -1,0 +1,16 @@
+app:
+  name: fx-quote
+  port: 8082
+  mode: debug
+database:
+  host: localhost
+  port: 5432
+  user: fxuser
+  password: fxpass
+  dbname: fx_quote
+redis:
+  host: localhost
+  port: 6379
+kafka:
+  brokers: [localhost:9092]
+  topic: fx.quote.tick

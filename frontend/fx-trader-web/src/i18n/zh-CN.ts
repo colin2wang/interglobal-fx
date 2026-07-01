@@ -1,0 +1,7 @@
+export default {
+  common: { login: '登录', logout: '退出登录', submit: '提交', cancel: '取消', confirm: '确认', loading: '加载中...', noData: '暂无数据' },
+  trading: { title: '交易', buy: '买入', sell: '卖出', market: '市价', limit: '限价', stop: '止损', volume: '手数', price: '价格', takeProfit: '止盈', stopLoss: '止损', order: '下单' },
+  position: { title: '持仓', symbol: '品种', side: '方向', volume: '手数', openPrice: '开仓价', currentPrice: '当前价', profit: '盈亏', close: '平仓' },
+  order: { title: '订单', pending: '挂单', history: '历史', filled: '已成交', cancelled: '已取消' },
+  account: { title: '账户', balance: '余额', equity: '净值', margin: '保证金', freeMargin: '可用保证金', deposit: '入金', withdraw: '出金' },
+};

@@ -1,0 +1,14 @@
+app:
+  name: fx-mt-bridge
+  port: 8090
+  mode: debug
+mt:
+  host: localhost
+  port: 8222
+  login: admin
+  password: admin123
+  timeout_seconds: 10
+sync:
+  account_interval_seconds: 5
+  order_interval_seconds: 1
+  position_interval_seconds: 2

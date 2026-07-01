@@ -1,0 +1,15 @@
+@import './assets/styles/reset.scss';
+@import './assets/styles/common.scss';
+
+#root {
+  width: 100%;
+  height: 100vh;
+}
+
+.page-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}

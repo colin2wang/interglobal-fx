@@ -1,0 +1,11 @@
+app:
+  name: fx-fix-gateway
+  port: 8091
+  mode: debug
+fix:
+  default_version: "4.4"
+  heartbeat_interval: 30
+  session_store_path: "./fix_sessions"
+  listen_addr: ":9876"
+logging:
+  level: debug
