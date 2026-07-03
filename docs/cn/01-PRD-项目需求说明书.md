@@ -514,7 +514,7 @@
 ## 6. 业务约束
 
 ### 6.1 技术约束
-- 交易核心使用Java 17 + Spring Boot 3
+- 交易核心使用Java 21 + Spring Boot 3
 - 行情服务使用Go 1.21+
 - 前端使用React 18 + TypeScript
 - 数据库使用PostgreSQL 15 + TimescaleDB

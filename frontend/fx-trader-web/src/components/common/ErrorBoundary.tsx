@@ -1,8 +1,13 @@
 import React from 'react';
 import { Result, Button } from 'antd';
 
-interface Props { children: React.ReactNode; }
-interface State { hasError: boolean; error: Error | null; }
+interface Props {
+  children: React.ReactNode;
+}
+interface State {
+  hasError: boolean;
+  error: Error | null;
+}
 
 export class ErrorBoundary extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -18,8 +23,16 @@ export class ErrorBoundary extends React.Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <Result status="error" title="Something went wrong" subTitle={this.state.error?.message}
-          extra={<Button type="primary" onClick={() => this.setState({ hasError: false, error: null })}>Try Again</Button>} />
+        <Result
+          status="error"
+          title="Something went wrong"
+          subTitle={this.state.error?.message}
+          extra={
+            <Button type="primary" onClick={() => this.setState({ hasError: false, error: null })}>
+              Try Again
+            </Button>
+          }
+        />
       );
     }
     return this.props.children;

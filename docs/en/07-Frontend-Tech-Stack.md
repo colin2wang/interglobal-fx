@@ -8,7 +8,7 @@
 |----------|------------|---------|-------------|
 | Core Framework | React | 18.x | UI Framework |
 | Language | TypeScript | 5.x | Type Safety |
-| UI Component Library | Ant Design Pro | 5.x | Enterprise-grade Component Library |
+| UI Component Library | Ant Design | 5.x | Enterprise-grade Component Library |
 | Build Tool | Vite | 5.x | Fast Build |
 | State Management | Zustand | 4.x | Lightweight State Management |
 | Router | React Router | 6.x | SPA Router |
@@ -44,11 +44,10 @@
 | Framework | Flutter | 3.x | Cross-platform Framework |
 | Language | Dart | 3.x | Development Language |
 | State Management | flutter_bloc | 8.x | BLoC Pattern |
-| Router | go_router | 12.x | Declarative Routing |
+| Router | go_router | 14.x | Declarative Routing |
 | HTTP | dio | 5.x | Network Requests |
-| WebSocket | web_socket_channel | 2.x | Real-time Communication |
 | Local Storage | shared_preferences | 2.x | Local Data |
-| Charts | fl_chart | 0.65.x | K-line Chart |
+| Charts | fl_chart | 0.68.x | K-line Chart |
 | UI Components | Material Design 3 | - | Google Design Language |
 
 ## 2. Project Structure

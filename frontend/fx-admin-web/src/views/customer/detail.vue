@@ -5,7 +5,9 @@
       <el-descriptions-item label="Username">{{ customer.username }}</el-descriptions-item>
       <el-descriptions-item label="Email">{{ customer.email }}</el-descriptions-item>
       <el-descriptions-item label="Phone">{{ customer.phone }}</el-descriptions-item>
-      <el-descriptions-item label="KYC"><StatusTag :status="customer.kycStatus || 'pending'" /></el-descriptions-item>
+      <el-descriptions-item label="KYC"
+        ><StatusTag :status="customer.kycStatus || 'pending'"
+      /></el-descriptions-item>
     </el-descriptions>
   </el-card>
 </template>
@@ -17,5 +19,8 @@ import StatusTag from '@/components/common/StatusTag.vue';
 import { customerApi } from '@/api';
 const route = useRoute();
 const customer = ref<any>({});
-onMounted(async () => { const res = await customerApi.getDetail(Number(route.params.id)); customer.value = res.data; });
+onMounted(async () => {
+  const res = await customerApi.getDetail(Number(route.params.id));
+  customer.value = res.data;
+});
 </script>

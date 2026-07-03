@@ -11,5 +11,10 @@
 <script setup lang="ts"></script>
 
 <style scoped>
-.app-main { flex: 1; padding: 16px; overflow-y: auto; background-color: #f0f2f5; }
+.app-main {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background-color: #f0f2f5;
+}
 </style>

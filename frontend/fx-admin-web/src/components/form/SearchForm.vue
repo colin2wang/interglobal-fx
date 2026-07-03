@@ -11,7 +11,17 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
 const props = defineProps<{ modelValue: Record<string, any> }>();
-const emit = defineEmits<{ (e: 'update:modelValue', v: Record<string, any>): void; (e: 'search'): void; (e: 'reset'): void }>();
+const emit = defineEmits<{
+  (e: 'update:modelValue', v: Record<string, any>): void;
+  (e: 'search'): void;
+  (e: 'reset'): void;
+}>();
 const form = reactive({ ...props.modelValue });
-const handleReset = () => { Object.keys(form).forEach((k) => { (form as any)[k] = undefined; }); emit('update:modelValue', { ...form }); emit('reset'); };
+const handleReset = () => {
+  Object.keys(form).forEach((k) => {
+    (form as any)[k] = undefined;
+  });
+  emit('update:modelValue', { ...form });
+  emit('reset');
+};
 </script>

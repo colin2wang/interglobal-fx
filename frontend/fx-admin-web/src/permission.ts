@@ -35,4 +35,6 @@ router.beforeEach(async (to, _from, next) => {
   }
 });
 
-router.afterEach(() => { NProgress.done(); });
+router.afterEach(() => {
+  NProgress.done();
+});

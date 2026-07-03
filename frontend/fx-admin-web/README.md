@@ -52,17 +52,18 @@ src/
 ## Quick Start
 
 ```bash
-npm install
-npm run dev       # http://localhost:3100
-npm run build     # Production build
-npm run lint      # ESLint check
+pnpm install
+pnpm run dev       # http://localhost:3001
+pnpm run build     # Production build
+pnpm run lint      # ESLint check + auto-fix
+pnpm run format    # Prettier format
 ```
 
 ## Environment Variables
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `VITE_API_BASE_URL` | Backend API URL | `http://localhost:8089` |
+| `VITE_API_BASE_URL` | Backend API URL | `http://localhost:8080/api` |
 | `VITE_APP_TITLE` | Browser title | `GlobalFX Admin` |
 
 ## Key Features

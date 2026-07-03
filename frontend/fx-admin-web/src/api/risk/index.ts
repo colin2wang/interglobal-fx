@@ -1,6 +1,13 @@
 import request from '../axios';
 
-export interface RiskRule { id: number; name: string; type: string; condition: string; action: string; status: number; }
+export interface RiskRule {
+  id: number;
+  name: string;
+  type: string;
+  condition: string;
+  action: string;
+  status: number;
+}
 
 export const riskApi = {
   getRules: (params: any) => request.get('/admin/risk/rules', { params }),

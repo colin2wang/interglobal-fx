@@ -5,10 +5,10 @@
 | Configuration | Value |
 |--------|-----|
 | Architecture Pattern | Microservices Architecture + Frontend-Backend Separation |
-| Trading Core | Java 17 + Spring Boot 3 (Strong Consistency) |
+| Trading Core | Java 21 + Spring Boot 3 (Strong Consistency) |
 | Market Data Service | Go 1.21+ (Low-latency Real-time Market Data) |
 | Risk Control Engine | Go + Rule Engine (Millisecond-level Risk Control) |
-| Web Frontend | React 18 + TypeScript + Ant Design Pro |
+| Web Frontend | React 18 + TypeScript + Ant Design |
 | Admin Backend | Vue3 + Element Plus |
 | Mobile | Flutter (iOS/Android) |
 | Database | PostgreSQL 15 + TimescaleDB (Time-series Data) |
@@ -101,15 +101,15 @@
 | Service Name | Tech Stack | Responsibility | Deployment Instances |
 |----------|--------|------|----------|
 | fx-gateway | Kong/Nginx | API Gateway, Routing, Authentication | 3+ |
-| fx-trade-core | Java17/SpringBoot3 | Trading Core (Orders/Positions) | 5+ |
+| fx-trade-core | Java21/SpringBoot3 | Trading Core (Orders/Positions) | 5+ |
 | fx-quote | Go1.21 | Market Data Service | 3+ |
 | fx-risk | Go1.21 | Risk Control Engine | 3+ |
-| fx-clearing | Java17/SpringBoot3 | Clearing Service | 2+ |
+| fx-clearing | Java21/SpringBoot3 | Clearing Service | 2+ |
 | fx-lp-bridge | Go1.21 | LP Bridge Service | 2+ |
-| fx-report | Java17/SpringBoot3 | Report Service | 2+ |
-| fx-notify | Java17/SpringBoot3 | Notification Service | 2+ |
-| fx-crm | Java17/SpringBoot3 | CRM Service | 2+ |
-| fx-system | Java17/SpringBoot3 | System Management Service | 2+ |
+| fx-report | Java21/SpringBoot3 | Report Service | 2+ |
+| fx-notify | Java21/SpringBoot3 | Notification Service | 2+ |
+| fx-crm | Java21/SpringBoot3 | CRM Service | 2+ |
+| fx-system | Java21/SpringBoot3 | System Management Service | 2+ |
 | fx-mt-bridge | Go1.21 | MT4/MT5 Bridge | 2+ |
 | fx-fix-gateway | Go1.21 | FIX Protocol Gateway | 2+ |
 

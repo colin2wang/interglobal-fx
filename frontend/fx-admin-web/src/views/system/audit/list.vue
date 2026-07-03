@@ -1,6 +1,6 @@
 <template>
   <el-card title="Audit Log">
-    <el-table :data="audits" v-loading="loading">
+    <el-table v-loading="loading" :data="audits">
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="operator" label="Operator" />
       <el-table-column prop="action" label="Action" />
@@ -16,5 +16,13 @@ import { ref, onMounted } from 'vue';
 import request from '@/api/axios';
 const loading = ref(false);
 const audits = ref([]);
-onMounted(async () => { loading.value = true; try { const res = await request.get('/system/audit/list'); audits.value = res.data; } finally { loading.value = false; } });
+onMounted(async () => {
+  loading.value = true;
+  try {
+    const res = await request.get('/system/audit/list');
+    audits.value = res.data;
+  } finally {
+    loading.value = false;
+  }
+});
 </script>

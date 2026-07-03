@@ -9,7 +9,9 @@ export const AccountPage = () => {
       <AccountBalance />
       <Card style={{ marginTop: 16 }}>
         <Space>
-          <Button type="primary" onClick={() => navigate('/account/deposit')}>Deposit</Button>
+          <Button type="primary" onClick={() => navigate('/account/deposit')}>
+            Deposit
+          </Button>
           <Button onClick={() => navigate('/account/withdraw')}>Withdraw</Button>
         </Space>
       </Card>

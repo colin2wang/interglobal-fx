@@ -2,71 +2,69 @@
 
 ## 1. Route List
 
-### 1.1 Trading Terminal (React - /trader)
+### 1.1 Trading Terminal (React - /)
 
-| Route Path | Page Name | Component Path | Permission | Menu |
-|------------|-----------|----------------|------------|------|
-| /login | Login Page | pages/login/index | No login required | No |
-| /register | Register Page | pages/register/index | No login required | No |
-| / | Trading Home | pages/trading/index | Logged-in user | Yes |
-| /trading | Trading Page | pages/trading/main | Logged-in user | Yes |
-| /positions | Position Management | pages/positions/index | Logged-in user | Yes |
-| /orders | Order History | pages/orders/index | Logged-in user | Yes |
-| /account | Account Overview | pages/account/index | Logged-in user | Yes |
-| /deposit | Deposit Page | pages/account/deposit | Logged-in user | Yes |
-| /withdraw | Withdrawal Page | pages/account/withdraw | Logged-in user | Yes |
-| /history | Fund History | pages/account/history | Logged-in user | Yes |
-| /profile | Profile Center | pages/profile/index | Logged-in user | Yes |
-| /kyc | KYC Verification | pages/profile/kyc | Logged-in user | Yes |
-| /messages | Message Center | pages/messages/index | Logged-in user | Yes |
+| Route Path | Page Name | Component Path | Permission | Status |
+|------------|-----------|----------------|------------|--------|
+| /login | Login Page | pages/login/LoginPage | No login required | Implemented |
+| / | Trading Home | pages/trading/TradingPage | Logged-in user | Implemented |
+| /trading | Trading Page | pages/trading/TradingPage | Logged-in user | Implemented |
+| /positions | Position Management | pages/positions/PositionsPage | Logged-in user | Implemented |
+| /orders | Order History | pages/orders/OrdersPage | Logged-in user | Implemented |
+| /account | Account Overview | pages/account/AccountPage | Logged-in user | Implemented |
+| /account/deposit | Deposit Page | pages/account/DepositPage | Logged-in user | Implemented |
+| /account/withdraw | Withdrawal Page | pages/account/WithdrawPage | Logged-in user | Implemented |
+| /profile | Profile Center | pages/profile/ProfilePage | Logged-in user | Implemented |
+| /register | Register Page | pages/register/index | No login required | **Planned** |
+| /history | Fund History | pages/account/history | Logged-in user | **Planned** |
+| /kyc | KYC Verification | pages/profile/kyc | Logged-in user | **Planned** |
+| /messages | Message Center | pages/messages/index | Logged-in user | **Planned** |
 
-### 1.2 Admin Backend (Vue - /admin)
+### 1.2 Admin Backend (Vue - /)
 
-| Route Path | Page Name | Component Path | Permission | Menu |
-|------------|-----------|----------------|------------|------|
-| /admin/login | Login Page | views/login/index | No login required | No |
-| /admin | Dashboard | views/dashboard/index | Logged-in user | Yes |
-| /admin/order | Order Management | - | - | Yes |
-| /admin/order/list | Order List | views/order/list | order:view | Yes |
-| /admin/order/pending | Pending Orders | views/order/pending | order:view | Yes |
-| /admin/position | Position Management | - | - | Yes |
-| /admin/position/list | Position List | views/position/list | account:view | Yes |
-| /admin/account | Account Management | - | - | Yes |
-| /admin/account/list | Account List | views/account/list | account:view | Yes |
-| /admin/account/deposit | Deposit Review | views/account/deposit | account:manage | Yes |
-| /admin/account/withdraw | Withdrawal Review | views/account/withdraw | account:manage | Yes |
-| /admin/customer | Customer Management | - | - | Yes |
-| /admin/customer/list | Customer List | views/customer/list | crm:view | Yes |
-| /admin/customer/kyc | KYC Review | views/customer/kyc | crm:manage | Yes |
-| /admin/customer/follow | Customer Follow-up | views/customer/follow | crm:manage | Yes |
-| /admin/ib | IB Management | - | - | Yes |
-| /admin/ib/list | IB List | views/ib/list | ib:view | Yes |
-| /admin/ib/commission | Commission Management | views/ib/commission | ib:manage | Yes |
-| /admin/risk | Risk Management | - | - | Yes |
-| /admin/risk/rules | Risk Rules | views/risk/rules | risk:view | Yes |
-| /admin/risk/events | Risk Events | views/risk/events | risk:view | Yes |
-| /admin/risk/blacklist | Blacklist | views/risk/blacklist | risk:manage | Yes |
-| /admin/quote | Market Data Management | - | - | Yes |
-| /admin/quote/symbols | Symbol Management | views/quote/symbols | risk:manage | Yes |
-| /admin/quote/spread | Spread Configuration | views/quote/spread | risk:manage | Yes |
-| /admin/report | Report Management | - | - | Yes |
-| /admin/report/trade | Trade Report | views/report/trade | report:view | Yes |
-| /admin/report/customer | Customer Report | views/report/customer | report:view | Yes |
-| /admin/report/risk | Risk Report | views/report/risk | report:view | Yes |
-| /admin/compliance | Compliance Management | - | - | Yes |
-| /admin/compliance/rules | Compliance Rules | views/compliance/rules | compliance:view | Yes |
-| /admin/compliance/aml | AML Monitoring | views/compliance/aml | compliance:view | Yes |
-| /admin/ticket | Ticket Management | - | - | Yes |
-| /admin/ticket/list | Ticket List | views/ticket/list | ticket:view | Yes |
-| /admin/system | System Management | - | - | Yes |
-| /admin/system/user | User Management | views/system/user | system:view | Yes |
-| /admin/system/role | Role Management | views/system/role | system:manage | Yes |
-| /admin/system/menu | Menu Management | views/system/menu | system:manage | Yes |
-| /admin/system/dict | Dictionary Management | views/system/dict | system:manage | Yes |
-| /admin/system/tenant | Tenant Management | views/system/tenant | system:manage | Yes |
-| /admin/system/audit | Audit Log | views/system/audit | audit:view | Yes |
-| /admin/notice | Notice Management | - | - | Yes |
-| /admin/notice/list | Announcement Management | views/notice/list | admin:notice | Yes |
+| Route Path | Page Name | Component Path | Permission | Status |
+|------------|-----------|----------------|------------|--------|
+| /login | Login Page | views/login/index | No login required | Implemented |
+| /dashboard | Dashboard | views/dashboard/index | Logged-in user | Implemented |
+| /order | Order Management | - | - | Implemented |
+| /order/list | Order List | views/order/list | order:view | Implemented |
+| /order/pending | Pending Orders | views/order/pending | order:view | Implemented |
+| /position | Position Management | - | - | Implemented |
+| /position/list | Position List | views/position/list | account:view | Implemented |
+| /account | Account Management | - | - | Implemented |
+| /account/list | Account List | views/account/list | account:view | Implemented |
+| /account/deposit | Deposit Review | views/account/deposit | account:manage | Implemented |
+| /account/withdraw | Withdrawal Review | views/account/withdraw | account:manage | Implemented |
+| /customer | Customer Management | - | - | Implemented |
+| /customer/list | Customer List | views/customer/list | crm:view | Implemented |
+| /customer/:id | Customer Detail | views/customer/detail | crm:view | Implemented |
+| /customer/:id/kyc | KYC Review | views/customer/kyc | crm:manage | Implemented |
+| /ib | IB Management | - | - | Implemented |
+| /ib/list | IB List | views/ib/list | ib:view | Implemented |
+| /ib/commission | Commission Management | views/ib/commission | ib:manage | Implemented |
+| /risk | Risk Management | - | - | Implemented |
+| /risk/rules | Risk Rules | views/risk/rules | risk:view | Implemented |
+| /risk/events | Risk Events | views/risk/events | risk:view | Implemented |
+| /risk/blacklist | Blacklist | views/risk/blacklist | risk:manage | Implemented |
+| /quote/symbols | Symbol Management | views/quote/symbols | risk:manage | Implemented |
+| /report/trade | Trade Report | views/report/trade | report:view | Implemented |
+| /ticket | Ticket Management | - | - | Implemented |
+| /ticket/list | Ticket List | views/ticket/list | ticket:view | Implemented |
+| /system | System Management | - | - | Implemented |
+| /system/user | User Management | views/system/user/list | system:view | Implemented |
+| /system/user/form/:id? | User Form | views/system/user/form | system:manage | Implemented |
+| /system/role | Role Management | views/system/role/list | system:manage | Implemented |
+| /system/menu | Menu Management | views/system/menu/list | system:manage | Implemented |
+| /system/dict | Dictionary Management | views/system/dict/list | system:manage | Implemented |
+| /system/tenant | Tenant Management | views/system/tenant/list | system:manage | Implemented |
+| /system/audit | Audit Log | views/system/audit/list | audit:view | Implemented |
+| /customer/follow | Customer Follow-up | views/customer/follow | crm:manage | **Planned** |
+| /quote/spread | Spread Configuration | views/quote/spread | risk:manage | **Planned** |
+| /report/customer | Customer Report | views/report/customer | report:view | **Planned** |
+| /report/risk | Risk Report | views/report/risk | report:view | **Planned** |
+| /compliance/rules | Compliance Rules | views/compliance/rules | compliance:view | **Planned** |
+| /compliance/aml | AML Monitoring | views/compliance/aml | compliance:view | **Planned** |
+| /notice/list | Announcement Management | views/notice/list | admin:notice | **Planned** |
 
 ---
 

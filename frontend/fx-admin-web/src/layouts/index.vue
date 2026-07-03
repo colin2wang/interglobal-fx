@@ -17,6 +17,14 @@ import AppMain from './AppMain.vue';
 </script>
 
 <style scoped>
-.app-wrapper { display: flex; height: 100vh; }
-.main-container { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.app-wrapper {
+  display: flex;
+  height: 100vh;
+}
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 </style>

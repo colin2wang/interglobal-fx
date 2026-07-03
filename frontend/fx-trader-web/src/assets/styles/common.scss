@@ -1,13 +1,57 @@
 @import './variables.scss';
-.page-loading { display: flex; justify-content: center; align-items: center; width: 100%; height: calc(100vh - 64px); }
-.price-up { color: $price-up !important; }
-.price-down { color: $price-down !important; }
-.flash-up { animation: flashUp 0.5s ease; }
-.flash-down { animation: flashDown 0.5s ease; }
-@keyframes flashUp { 0% { background-color: transparent; } 50% { background-color: rgba($price-up, 0.2); } 100% { background-color: transparent; } }
-@keyframes flashDown { 0% { background-color: transparent; } 50% { background-color: rgba($price-down, 0.2); } 100% { background-color: transparent; } }
-.text-green { color: $success-color; }
-.text-red { color: $error-color; }
-.text-center { text-align: center; }
-.mt-16 { margin-top: $spacing-md; }
-.mb-16 { margin-bottom: $spacing-md; }
+.page-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 64px);
+}
+.price-up {
+  color: $price-up !important;
+}
+.price-down {
+  color: $price-down !important;
+}
+.flash-up {
+  animation: flashUp 0.5s ease;
+}
+.flash-down {
+  animation: flashDown 0.5s ease;
+}
+@keyframes flashUp {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba($price-up, 0.2);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+@keyframes flashDown {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba($price-down, 0.2);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+.text-green {
+  color: $success-color;
+}
+.text-red {
+  color: $error-color;
+}
+.text-center {
+  text-align: center;
+}
+.mt-16 {
+  margin-top: $spacing-md;
+}
+.mb-16 {
+  margin-bottom: $spacing-md;
+}

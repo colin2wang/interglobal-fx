@@ -3,7 +3,15 @@
     <p>{{ content }}</p>
     <template #footer>
       <el-button @click="visible = false">Cancel</el-button>
-      <el-button type="primary" :loading="loading" @click="$emit('confirm'); visible = false">Confirm</el-button>
+      <el-button
+        type="primary"
+        :loading="loading"
+        @click="
+          $emit('confirm');
+          visible = false;
+        "
+        >Confirm</el-button
+      >
     </template>
   </el-dialog>
 </template>
@@ -16,6 +24,9 @@ const emit = defineEmits<{ (e: 'update:modelValue', v: boolean): void; (e: 'conf
 
 const loading = ref(false);
 const visible = ref(props.modelValue);
-watch(() => props.modelValue, (v) => (visible.value = v));
+watch(
+  () => props.modelValue,
+  (v) => (visible.value = v),
+);
 watch(visible, (v) => emit('update:modelValue', v));
 </script>

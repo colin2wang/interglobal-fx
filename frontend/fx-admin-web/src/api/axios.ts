@@ -22,7 +22,10 @@ service.interceptors.response.use(
     const res = response.data;
     if (res.code !== 0 && res.code !== 200) {
       ElMessage.error(res.message || 'Error');
-      if (res.code === 401) { removeToken(); router.push('/login'); }
+      if (res.code === 401) {
+        removeToken();
+        router.push('/login');
+      }
       return Promise.reject(new Error(res.message));
     }
     return res;

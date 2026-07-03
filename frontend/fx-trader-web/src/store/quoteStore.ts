@@ -18,5 +18,6 @@ export const useQuoteStore = create<QuoteState>((set) => ({
   setQuote: (quote) => set((state) => ({ quotes: { ...state.quotes, [quote.symbol]: quote } })),
   setSelectedSymbol: (symbol) => set({ selectedSymbol: symbol }),
   addToWatchList: (symbol) => set((state) => ({ watchList: [...state.watchList, symbol] })),
-  removeFromWatchList: (symbol) => set((state) => ({ watchList: state.watchList.filter((s) => s !== symbol) })),
+  removeFromWatchList: (symbol) =>
+    set((state) => ({ watchList: state.watchList.filter((s) => s !== symbol) })),
 }));

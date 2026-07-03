@@ -9,13 +9,27 @@ export const Header = () => {
   const { userInfo, logout } = useUserStore();
   const navigate = useNavigate();
   const items = [
-    { key: 'profile', icon: <UserOutlined />, label: 'Profile', onClick: () => navigate('/profile') },
+    {
+      key: 'profile',
+      icon: <UserOutlined />,
+      label: 'Profile',
+      onClick: () => navigate('/profile'),
+    },
     { key: 'settings', icon: <SettingOutlined />, label: 'Settings' },
     { type: 'divider' as const },
     { key: 'logout', icon: <LogoutOutlined />, label: 'Logout', onClick: logout },
   ];
   return (
-    <AntHeader style={{ background: '#fff', padding: '0 24px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', borderBottom: '1px solid #f0f0f0' }}>
+    <AntHeader
+      style={{
+        background: '#fff',
+        padding: '0 24px',
+        display: 'flex',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        borderBottom: '1px solid #f0f0f0',
+      }}
+    >
       <Dropdown menu={{ items }} placement="bottomRight">
         <Space style={{ cursor: 'pointer' }}>
           <Avatar icon={<UserOutlined />} />

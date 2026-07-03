@@ -9,7 +9,16 @@ import { ref, onMounted } from 'vue';
 const props = defineProps<{ dictType: string }>();
 const options = ref<{ label: string; value: string | number }[]>([]);
 onMounted(() => {
-  const data: Record<string, any[]> = { order_status: [{ label: 'Pending', value: 'pending' }, { label: 'Filled', value: 'filled' }], kyc_status: [{ label: 'Pending', value: 'pending' }, { label: 'Verified', value: 'verified' }] };
+  const data: Record<string, any[]> = {
+    order_status: [
+      { label: 'Pending', value: 'pending' },
+      { label: 'Filled', value: 'filled' },
+    ],
+    kyc_status: [
+      { label: 'Pending', value: 'pending' },
+      { label: 'Verified', value: 'verified' },
+    ],
+  };
   options.value = data[props.dictType] || [];
 });
 </script>

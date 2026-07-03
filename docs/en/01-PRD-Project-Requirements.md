@@ -514,7 +514,7 @@ As the global forex market continues to develop, the demand for forex trading se
 ## 6. Business Constraints
 
 ### 6.1 Technical Constraints
-- Trading core uses Java 17 + Spring Boot 3
+- Trading core uses Java 21 + Spring Boot 3
 - Market data service uses Go 1.21+
 - Frontend uses React 18 + TypeScript
 - Database uses PostgreSQL 15 + TimescaleDB

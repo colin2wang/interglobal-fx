@@ -9,11 +9,21 @@ export const TradingPage = () => {
   const { selectedSymbol } = useQuoteStore();
   return (
     <Row gutter={16}>
-      <Col span={4}><SymbolList /></Col>
-      <Col span={14}><Card title={selectedSymbol}><CandlestickChart data={[]} /></Card></Col>
+      <Col span={4}>
+        <SymbolList />
+      </Col>
+      <Col span={14}>
+        <Card title={selectedSymbol}>
+          <CandlestickChart data={[]} />
+        </Card>
+      </Col>
       <Col span={6}>
-        <Card title="Order" style={{ marginBottom: 16 }}><OrderForm /></Card>
-        <Card title="Quick Trade"><QuickOrder /></Card>
+        <Card title="Order" style={{ marginBottom: 16 }}>
+          <OrderForm />
+        </Card>
+        <Card title="Quick Trade">
+          <QuickOrder />
+        </Card>
       </Col>
     </Row>
   );

@@ -46,10 +46,11 @@ src/
 ## Quick Start
 
 ```bash
-npm install
-npm run dev       # http://localhost:3000
-npm run build     # Production build
-npm run lint      # ESLint check
+pnpm install
+pnpm run dev       # http://localhost:3000
+pnpm run build     # Production build
+pnpm run lint      # ESLint check + auto-fix
+pnpm run format    # Prettier format
 ```
 
 ## Environment Variables

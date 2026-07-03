@@ -1,7 +1,20 @@
 import request from '../axios';
 
-export interface UserInfo { id: number; username: string; nickname: string; avatar: string; email: string; phone: string; status: number; roles: string[]; permissions: string[]; }
-export interface LoginForm { username: string; password: string; }
+export interface UserInfo {
+  id: number;
+  username: string;
+  nickname: string;
+  avatar: string;
+  email: string;
+  phone: string;
+  status: number;
+  roles: string[];
+  permissions: string[];
+}
+export interface LoginForm {
+  username: string;
+  password: string;
+}
 
 export const userApi = {
   login: (data: LoginForm) => request.post('/auth/login', data),

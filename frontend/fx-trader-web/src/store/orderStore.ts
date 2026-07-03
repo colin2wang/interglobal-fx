@@ -16,5 +16,6 @@ export const useOrderStore = create<OrderState>((set) => ({
   setPendingOrders: (orders) => set({ pendingOrders: orders }),
   setOrderHistory: (orders) => set({ orderHistory: orders }),
   addPendingOrder: (order) => set((state) => ({ pendingOrders: [...state.pendingOrders, order] })),
-  removePendingOrder: (orderId) => set((state) => ({ pendingOrders: state.pendingOrders.filter((o) => o.id !== orderId) })),
+  removePendingOrder: (orderId) =>
+    set((state) => ({ pendingOrders: state.pendingOrders.filter((o) => o.id !== orderId) })),
 }));

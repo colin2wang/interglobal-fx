@@ -1,5 +1,13 @@
 <template>
-  <el-date-picker v-model="dateRange" type="daterange" range-separator="To" start-placeholder="Start" end-placeholder="End" value-format="YYYY-MM-DD" @change="(v: any) => $emit('update:modelValue', v)" />
+  <el-date-picker
+    v-model="dateRange"
+    type="daterange"
+    range-separator="To"
+    start-placeholder="Start"
+    end-placeholder="End"
+    value-format="YYYY-MM-DD"
+    @change="(v: any) => $emit('update:modelValue', v)"
+  />
 </template>
 
 <script setup lang="ts">

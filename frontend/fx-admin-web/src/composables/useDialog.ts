@@ -12,6 +12,9 @@ export function useDialog() {
     formData.value = data ? { ...data } : {};
     visible.value = true;
   };
-  const closeDialog = () => { visible.value = false; formData.value = {}; };
+  const closeDialog = () => {
+    visible.value = false;
+    formData.value = {};
+  };
   return { visible, title, mode, formData, openDialog, closeDialog };
 }

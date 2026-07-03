@@ -8,9 +8,7 @@ function App() {
   const element = useRoutes(routes);
   return (
     <ErrorBoundary>
-      <Suspense fallback={<Spin size="large" className="page-loading" />}>
-        {element}
-      </Suspense>
+      <Suspense fallback={<Spin size="large" className="page-loading" />}>{element}</Suspense>
     </ErrorBoundary>
   );
 }

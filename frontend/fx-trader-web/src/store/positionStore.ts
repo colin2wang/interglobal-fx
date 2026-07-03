@@ -20,12 +20,14 @@ export const usePositionStore = create<PositionState>((set) => ({
   totalProfit: 0,
   totalMargin: 0,
   setPositions: (positions) => set({ positions, ...calcTotals(positions) }),
-  updatePosition: (position) => set((state) => {
-    const positions = state.positions.map((p) => p.id === position.id ? position : p);
-    return { positions, ...calcTotals(positions) };
-  }),
-  removePosition: (positionId) => set((state) => {
-    const positions = state.positions.filter((p) => p.id !== positionId);
-    return { positions, ...calcTotals(positions) };
-  }),
+  updatePosition: (position) =>
+    set((state) => {
+      const positions = state.positions.map((p) => (p.id === position.id ? position : p));
+      return { positions, ...calcTotals(positions) };
+    }),
+  removePosition: (positionId) =>
+    set((state) => {
+      const positions = state.positions.filter((p) => p.id !== positionId);
+      return { positions, ...calcTotals(positions) };
+    }),
 }));

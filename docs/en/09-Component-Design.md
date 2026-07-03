@@ -608,10 +608,10 @@ PriceTicker(
 
 | Library | Version | Purpose |
 |--------|------|------|
-| fl_chart | ^0.65.x | Charts |
+| fl_chart | ^0.68.x | Charts |
 | dio | ^5.x | HTTP requests |
-| go_router | ^12.x | Routing |
+| go_router | ^14.x | Routing |
 | flutter_bloc | ^8.x | State management |
 | get_it | ^7.x | Dependency injection |
 | shared_preferences | ^2.x | Local storage |
-| intl | ^0.18.x | Internationalization |
+| intl | ^0.19.x | Internationalization |

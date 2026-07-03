@@ -9,19 +9,39 @@ export const WithdrawPage = () => {
   const navigate = useNavigate();
   const handleSubmit = async (values: any) => {
     setLoading(true);
-    try { await accountApi.withdraw(values); message.success('Withdrawal submitted'); navigate('/account'); }
-    catch { message.error('Failed'); } finally { setLoading(false); }
+    try {
+      await accountApi.withdraw(values);
+      message.success('Withdrawal submitted');
+      navigate('/account');
+    } catch {
+      message.error('Failed');
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <Card title="Withdraw" style={{ maxWidth: 600, margin: '0 auto' }}>
       <Form form={form} layout="vertical" onFinish={handleSubmit}>
-        <Form.Item name="amount" label="Amount" rules={[{ required: true }]}><InputNumber min={1} style={{ width: '100%' }} prefix="$" /></Form.Item>
-        <Form.Item name="method" label="Method" rules={[{ required: true }]}>
-          <Select><Select.Option value="bank">Bank Transfer</Select.Option><Select.Option value="crypto">Cryptocurrency</Select.Option></Select>
+        <Form.Item name="amount" label="Amount" rules={[{ required: true }]}>
+          <InputNumber min={1} style={{ width: '100%' }} prefix="$" />
         </Form.Item>
-        <Form.Item name="accountNo" label="Account Number" rules={[{ required: true }]}><Input /></Form.Item>
-        <Form.Item name="remark" label="Remark"><Input.TextArea rows={3} /></Form.Item>
-        <Form.Item><Button type="primary" htmlType="submit" loading={loading} block>Submit Withdrawal</Button></Form.Item>
+        <Form.Item name="method" label="Method" rules={[{ required: true }]}>
+          <Select>
+            <Select.Option value="bank">Bank Transfer</Select.Option>
+            <Select.Option value="crypto">Cryptocurrency</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item name="accountNo" label="Account Number" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="remark" label="Remark">
+          <Input.TextArea rows={3} />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={loading} block>
+            Submit Withdrawal
+          </Button>
+        </Form.Item>
       </Form>
     </Card>
   );

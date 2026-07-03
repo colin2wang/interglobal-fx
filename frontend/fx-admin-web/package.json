@@ -3,7 +3,13 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "scripts": { "dev": "vite", "build": "vue-tsc && vite build", "preview": "vite preview" },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --fix",
+    "format": "prettier --write \"src/**/*.{ts,vue,scss}\""
+  },
   "dependencies": {
     "vue": "^3.4.34", "vue-router": "^4.4.0", "pinia": "^2.1.7",
     "element-plus": "^2.7.6", "@element-plus/icons-vue": "^2.3.1",
@@ -11,8 +17,19 @@
     "vue-i18n": "^9.13.1", "dayjs": "^1.11.12", "nprogress": "^0.2.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.5", "typescript": "^5.5.4", "vite": "^5.4.0",
-    "vue-tsc": "^2.0.28", "sass": "^1.77.8",
-    "unplugin-auto-import": "^0.18.0", "unplugin-vue-components": "^0.27.2"
+    "@eslint/js": "^9.9.0",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "eslint": "^9.9.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-vue": "^9.28.0",
+    "prettier": "^3.3.0",
+    "sass": "^1.77.8",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.4.0",
+    "unplugin-auto-import": "^0.18.0",
+    "unplugin-vue-components": "^0.27.2",
+    "vite": "^5.4.0",
+    "vue-eslint-parser": "^9.4.0",
+    "vue-tsc": "^2.0.28"
   }
 }

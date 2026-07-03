@@ -23,7 +23,14 @@ export const useUserStore = create<UserState>((set) => ({
   token: getToken(),
   userInfo: null,
   isLoggedIn: !!getToken(),
-  setToken: (token) => { setToken(token); set({ token, isLoggedIn: true }); },
+  setToken: (token) => {
+    setToken(token);
+    set({ token, isLoggedIn: true });
+  },
   setUserInfo: (info) => set({ userInfo: info }),
-  logout: () => { removeToken(); set({ token: null, userInfo: null, isLoggedIn: false }); window.location.href = '/login'; },
+  logout: () => {
+    removeToken();
+    set({ token: null, userInfo: null, isLoggedIn: false });
+    window.location.href = '/login';
+  },
 }));

@@ -9,11 +9,11 @@ Flutter mobile trading application for iOS and Android.
 | Flutter | 3.x | Cross-platform framework |
 | Dart | 3.x | Programming language |
 | flutter_bloc | 8.x | State management (BLoC pattern) |
-| go_router | 12.x | Declarative routing |
+| go_router | 14.x | Declarative routing |
 | dio | 5.x | HTTP client |
-| fl_chart | 0.65.x | K-line and price charts |
+| fl_chart | 0.68.x | K-line and price charts |
 | shared_preferences | 2.x | Local storage |
-| intl | 0.18.x | Internationalization |
+| intl | 0.19.x | Internationalization |
 
 ## Project Structure
 
