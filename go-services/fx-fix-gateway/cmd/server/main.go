@@ -50,6 +50,14 @@ func main() {
 		v1.POST("/fix/marketdata", fixHandler.SendMarketDataRequest)
 	}
 
+	router.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"status":  "UP",
+			"service": cfg.App.Name,
+			"checks":  map[string]string{},
+		})
+	})
+
 	addr := fmt.Sprintf(":%d", cfg.App.Port)
 	logger.Info("HTTP server starting", "addr", addr)
 	go func() {

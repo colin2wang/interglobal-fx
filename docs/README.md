@@ -27,6 +27,10 @@ This platform provides a secure, efficient, and compliant forex trading ecosyste
 | 15 | Permission Design | RBAC model, role definitions, and data scope rules | [EN](./en/15-Permission-Design.md) | [中文](./cn/15-权限设计文档.md) |
 | 16 | Dictionary Documentation | System-wide enumeration values and status codes | [EN](./en/16-Dictionary-Documentation.md) | [中文](./cn/16-字典文档.md) |
 | 17 | Global Utility Classes | Backend utility classes for security, date, money, ID generation, etc. | [EN](./en/17-Global-Utility-Classes.md) | [中文](./cn/17-全局工具类说明.md) |
+| 18 | Deployment Guide | Docker, docker-compose, service ports, and production considerations | [EN](./en/18-Deployment-Guide.md) | - |
+| 19 | Development Setup Guide | Local environment setup, IDE configuration, and troubleshooting | [EN](./en/19-Development-Setup-Guide.md) | - |
+| 20 | Testing Strategy | Unit, integration, and E2E testing approach with examples | [EN](./en/20-Testing-Strategy.md) | - |
+| 21 | CI/CD Pipeline | GitHub Actions workflows, branch strategy, and deployment process | [EN](./en/21-CICD-Pipeline.md) | - |
 
 ## Languages
 
@@ -39,7 +43,7 @@ This platform provides a secure, efficient, and compliant forex trading ecosyste
 
 ```
 Client Layer        →  React (Trading) | Vue3 (Admin) | Flutter (Mobile) | MT4/MT5 Bridge
-API Gateway         →  Kong / Nginx (routing, auth, rate limiting)
+API Gateway         →  Nginx (port 80) — routing, CORS, rate limiting, WebSocket proxy
 Application Layer   →  Java/Spring Boot (Trade Core) | Go (Quote & Risk) | Node.js (CRM)
 Data Layer          →  PostgreSQL 15 + TimescaleDB | Redis Cluster 7 | Kafka | Elasticsearch 8
 Infrastructure      →  Kubernetes | Consul | Jaeger + SkyWalking | ELK Stack

@@ -42,6 +42,14 @@ func main() {
 		v1.GET("/risk/events", riskHandler.GetRiskEvents)
 	}
 
+	router.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"status":  "UP",
+			"service": cfg.App.Name,
+			"checks":  map[string]string{},
+		})
+	})
+
 	addr := fmt.Sprintf(":%d", cfg.App.Port)
 	logger.Info("starting server", "addr", addr)
 	go func() {

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"os"
@@ -66,6 +67,26 @@ func main() {
 		v1.GET("/quotes", quoteHandler.GetQuotes)
 		v1.GET("/klines/:symbol", klineHandler.GetKlines)
 	}
+
+	router.GET("/health", func(c *gin.Context) {
+		status := "UP"
+		checks := map[string]string{}
+
+		if rdb != nil {
+			if err := rdb.Ping(context.Background()).Err(); err != nil {
+				status = "DOWN"
+				checks["redis"] = err.Error()
+			} else {
+				checks["redis"] = "UP"
+			}
+		}
+
+		c.JSON(200, gin.H{
+			"status":  status,
+			"service": cfg.App.Name,
+			"checks":  checks,
+		})
+	})
 
 	addr := fmt.Sprintf(":%d", cfg.App.Port)
 	go func() {

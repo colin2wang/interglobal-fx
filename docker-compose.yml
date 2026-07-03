@@ -1,0 +1,335 @@
+version: '3.8'
+
+services:
+  # ========== API Gateway ==========
+  api-gateway:
+    build:
+      context: ./gateway
+    container_name: fx-api-gateway
+    ports:
+      - "80:80"
+    depends_on:
+      - fx-system
+      - fx-trade
+      - fx-risk
+      - fx-clearing
+      - fx-crm
+      - fx-report
+      - fx-quote
+      - fx-risk-engine
+      - fx-mt-bridge
+      - fx-fix-gateway
+
+  # ========== Infrastructure ==========
+  postgres:
+    image: timescale/timescaledb:latest-pg15
+    container_name: fx-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: fx_trading
+      POSTGRES_USER: fxuser
+      POSTGRES_PASSWORD: fxpass
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./backend/sql:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fxuser"]
+      interval: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: fx-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 5
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: fx-kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: fx-zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  # ========== Java Services ==========
+  fx-system:
+    build:
+      context: ./backend
+      args:
+        SERVICE: fx-system
+    container_name: fx-system
+    ports:
+      - "8089:8089"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: fx_config
+      DB_USERNAME: fxuser
+      DB_PASSWORD: fxpass
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8089/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  fx-trade:
+    build:
+      context: ./backend
+      args:
+        SERVICE: fx-trade
+    container_name: fx-trade
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: fx_trading
+      DB_USERNAME: fxuser
+      DB_PASSWORD: fxpass
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  fx-risk:
+    build:
+      context: ./backend
+      args:
+        SERVICE: fx-risk
+    container_name: fx-risk
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: fx_trading
+      DB_USERNAME: fxuser
+      DB_PASSWORD: fxpass
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8083/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  fx-clearing:
+    build:
+      context: ./backend
+      args:
+        SERVICE: fx-clearing
+    container_name: fx-clearing
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: fx_trading
+      DB_USERNAME: fxuser
+      DB_PASSWORD: fxpass
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  fx-crm:
+    build:
+      context: ./backend
+      args:
+        SERVICE: fx-crm
+    container_name: fx-crm
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: fx_crm
+      DB_USERNAME: fxuser
+      DB_PASSWORD: fxpass
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  fx-report:
+    build:
+      context: ./backend
+      args:
+        SERVICE: fx-report
+    container_name: fx-report
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: fx_report
+      DB_USERNAME: fxuser
+      DB_PASSWORD: fxpass
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # ========== Go Services ==========
+  fx-quote:
+    build:
+      context: ./go-services/fx-quote
+    container_name: fx-quote
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./go-services/fx-quote/config.yaml:/app/config.yaml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8082/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  fx-risk-engine:
+    build:
+      context: ./go-services/fx-risk
+    container_name: fx-risk-engine
+    ports:
+      - "8087:8087"
+    volumes:
+      - ./go-services/fx-risk/config.yaml:/app/config.yaml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8087/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  fx-mt-bridge:
+    build:
+      context: ./go-services/fx-mt-bridge
+    container_name: fx-mt-bridge
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./go-services/fx-mt-bridge/config.yaml:/app/config.yaml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8088/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  fx-fix-gateway:
+    build:
+      context: ./go-services/fx-fix-gateway
+    container_name: fx-fix-gateway
+    ports:
+      - "8091:8091"
+      - "9876:9876"
+    volumes:
+      - ./go-services/fx-fix-gateway/config.yaml:/app/config.yaml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8091/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # ========== Frontend ==========
+  fx-admin-web:
+    build:
+      context: ./frontend/fx-admin-web
+      dockerfile: Dockerfile
+    container_name: fx-admin-web
+    ports:
+      - "3001:80"
+    depends_on:
+      - fx-system
+
+  fx-trader-web:
+    build:
+      context: ./frontend/fx-trader-web
+      dockerfile: Dockerfile
+    container_name: fx-trader-web
+    ports:
+      - "3000:80"
+    depends_on:
+      - fx-trade
+
+volumes:
+  pgdata:
+  redisdata:

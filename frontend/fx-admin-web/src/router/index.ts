@@ -123,10 +123,52 @@ const routes: RouteRecordRaw[] = [
         meta: { title: 'Quote Symbols' },
       },
       {
+        path: 'quote/spread',
+        name: 'QuoteSpread',
+        component: () => import('@/views/quote/spread.vue'),
+        meta: { title: 'Spread Config' },
+      },
+      {
         path: 'report/trade',
         name: 'TradeReport',
         component: () => import('@/views/report/trade.vue'),
         meta: { title: 'Trade Report' },
+      },
+      {
+        path: 'report/customer',
+        name: 'CustomerReport',
+        component: () => import('@/views/report/customer.vue'),
+        meta: { title: 'Customer Report' },
+      },
+      {
+        path: 'report/risk',
+        name: 'RiskReport',
+        component: () => import('@/views/report/risk.vue'),
+        meta: { title: 'Risk Report' },
+      },
+      {
+        path: 'compliance/rules',
+        name: 'ComplianceRules',
+        component: () => import('@/views/compliance/rules.vue'),
+        meta: { title: 'Compliance Rules' },
+      },
+      {
+        path: 'compliance/aml',
+        name: 'AMLMonitoring',
+        component: () => import('@/views/compliance/aml.vue'),
+        meta: { title: 'AML Monitoring' },
+      },
+      {
+        path: 'customer/follow',
+        name: 'CustomerFollow',
+        component: () => import('@/views/customer/follow.vue'),
+        meta: { title: 'Customer Follow-up' },
+      },
+      {
+        path: 'notice',
+        name: 'Notice',
+        component: () => import('@/views/notice/list.vue'),
+        meta: { title: 'Announcements' },
       },
       {
         path: 'ticket',

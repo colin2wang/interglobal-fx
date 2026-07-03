@@ -51,6 +51,20 @@ func main() {
 		v1.GET("/mt/positions/:login", mtHandler.GetPositions)
 	}
 
+	router.GET("/health", func(c *gin.Context) {
+		status := "UP"
+		if !mtService.IsConnected() {
+			status = "DEGRADED"
+		}
+		c.JSON(200, gin.H{
+			"status":  status,
+			"service": cfg.App.Name,
+			"checks": map[string]string{
+				"mt4_connection": map[bool]string{true: "UP", false: "DOWN"}[mtService.IsConnected()],
+			},
+		})
+	})
+
 	addr := fmt.Sprintf(":%d", cfg.App.Port)
 	logger.Info("starting server", "addr", addr)
 	go func() {

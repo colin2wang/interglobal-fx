@@ -60,3 +60,17 @@ knife4j:
 logging:
   level:
     com.globalfx: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: true
+    redis:
+      enabled: true
