@@ -1,6 +1,6 @@
-# 环球汇通外汇交易平台 - 配置文件模板
+# GlobalFX Forex Trading Platform - Configuration File Templates
 
-## 1. Java Spring Boot 配置 - application.yml
+## 1. Java Spring Boot Configuration - application.yml
 
 ```yaml
 server:
@@ -20,7 +20,7 @@ spring:
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
   
-  # 数据源配置
+  # Datasource configuration
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: org.postgresql.Driver
@@ -35,7 +35,7 @@ spring:
       connection-timeout: 30000
       pool-name: fx-trade-hikari-pool
   
-  # Redis 配置
+  # Redis configuration
   data:
     redis:
       host: ${REDIS_HOST:localhost}
@@ -50,7 +50,7 @@ spring:
           min-idle: 10
           max-wait: 3000ms
   
-  # Kafka 配置
+  # Kafka configuration
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     consumer:
@@ -68,7 +68,7 @@ spring:
       concurrency: 3
       ack-mode: manual
   
-  # Jackson 配置
+  # Jackson configuration
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: Asia/Shanghai
@@ -77,7 +77,7 @@ spring:
       write-bigdecimal-as-plain: true
     default-property-inclusion: non_null
 
-# MyBatis Plus 配置
+# MyBatis Plus configuration
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*.xml
   type-aliases-package: com.globalfx.trade.module.*.entity
@@ -92,33 +92,33 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
 
-# 项目自定义配置
+# Project custom configuration
 fx:
-  # JWT配置
+  # JWT configuration
   jwt:
     secret: ${JWT_SECRET:your-256-bit-secret-key-here-change-in-production}
-    expiration: 1800000  # 30分钟
-    refresh-expiration: 604800000  # 7天
+    expiration: 1800000  # 30 minutes
+    refresh-expiration: 604800000  # 7 days
   
-  # 交易配置
+  # Trading configuration
   trade:
     max-slippage-points: 50
     default-swap-mode: points
     position-merge-enabled: true
   
-  # 风控配置
+  # Risk control configuration
   risk:
-    margin-call-level: 100  # Margin Call阈值 %
-    stop-out-level: 50      # 强平阈值 %
-    partial-close-level: 80 # 部分强平阈值 %
+    margin-call-level: 100  # Margin Call threshold %
+    stop-out-level: 50      # Forced liquidation threshold %
+    partial-close-level: 80 # Partial forced liquidation threshold %
   
-  # LP配置
+  # LP configuration
   lp:
     timeout-ms: 5000
     retry-count: 3
     quote-validity-ms: 500
 
-# 日志配置
+# Logging configuration
 logging:
   level:
     root: INFO
@@ -133,7 +133,7 @@ logging:
     max-size: 100MB
     max-history: 30
 
-# 暴露Actuator端点
+# Expose Actuator endpoints
 management:
   endpoints:
     web:
@@ -147,7 +147,7 @@ management:
       application: ${spring.application.name}
 ```
 
-### 1.1 开发环境配置 - application-dev.yml
+### 1.1 Development Environment Configuration - application-dev.yml
 
 ```yaml
 spring:
@@ -173,7 +173,7 @@ logging:
     com.globalfx: DEBUG
 ```
 
-### 1.2 生产环境配置 - application-prod.yml
+### 1.2 Production Environment Configuration - application-prod.yml
 
 ```yaml
 spring:
@@ -205,7 +205,7 @@ logging:
     name: /var/log/fx-trade/app.log
 ```
 
-## 2. Go 行情服务配置 - config.yaml
+## 2. Go Market Data Service Configuration - config.yaml
 
 ```yaml
 app:
@@ -242,12 +242,12 @@ kafka:
     auto_offset_reset: earliest
 
 quote:
-  # 行情缓存配置
+  # Market data cache configuration
   cache:
     tick_ttl_seconds: 5
     book_depth: 10
   
-  # K线配置
+  # K-line configuration
   kline:
     periods:
       - 1m
@@ -257,7 +257,7 @@ quote:
       - 4h
       - 1d
   
-  # LP连接配置
+  # LP connection configuration
   lp:
     timeout_ms: 5000
     retry_interval_ms: 1000
@@ -266,8 +266,7 @@ ws:
   host: 0.0.0.0
   port: 8082
   read_buffer_size: 10240
-  write_buffer_size: 10240
-  max_message_size: 102400
+  write_buffer_size: 102400
   ping_interval_seconds: 30
   pong_timeout_seconds: 60
 
@@ -278,66 +277,66 @@ logger:
   file: /var/log/fx-quote/app.log
 ```
 
-## 3. React 前端环境变量
+## 3. React Frontend Environment Variables
 
 ### 3.1 .env.development
 
 ```env
-# 应用配置
-VITE_APP_TITLE=环球汇通交易平台(开发环境)
+# Application configuration
+VITE_APP_TITLE=GlobalFX Trading Platform (Development)
 VITE_APP_VERSION=1.0.0
 
-# API配置
+# API configuration
 VITE_API_BASE_URL=http://localhost:8080
 VITE_WS_URL=ws://localhost:8082
 
-# 环境标识
+# Environment identifier
 VITE_BUILD_ENV=development
 
-# 功能开关
+# Feature toggles
 VITE_ENABLE_MOCK=false
 VITE_ENABLE_DEVTOOLS=true
 
-# WebSocket配置
+# WebSocket configuration
 VITE_WS_RECONNECT_INTERVAL=3000
 VITE_WS_MAX_RECONNECT_ATTEMPTS=10
 
-# 调试配置
+# Debug configuration
 VITE_ENABLE_DEBUG_LOG=false
 ```
 
 ### 3.2 .env.production
 
 ```env
-# 应用配置
-VITE_APP_TITLE=环球汇通交易平台
+# Application configuration
+VITE_APP_TITLE=GlobalFX Trading Platform
 VITE_APP_VERSION=1.0.0
 
-# API配置
+# API configuration
 VITE_API_BASE_URL=https://api.fx-platform.com
 VITE_WS_URL=wss://ws.fx-platform.com
 
-# 环境标识
+# Environment identifier
 VITE_BUILD_ENV=production
 
-# 功能开关
+# Feature toggles
 VITE_ENABLE_MOCK=false
 VITE_ENABLE_DEVTOOLS=false
 
-# WebSocket配置
+# WebSocket configuration
 VITE_WS_RECONNECT_INTERVAL=5000
 VITE_WS_MAX_RECONNECT_ATTEMPTS=5
 
-# 调试配置
+# Debug configuration
 VITE_ENABLE_DEBUG_LOG=false
 ```
 
-## 4. Vue 前端环境变量
+## 4. Vue Frontend Environment Variables
 
 ### 4.1 .env.development
 
 ```env
-VITE_APP_TITLE=环球汇通管理后台(开发环境)
+VITE_APP_TITLE=GlobalFX Admin Backend (Development)
 VITE_API_BASE_URL=http://localhost:8089
 VITE_BUILD_ENV=development
 VITE_OUTPUT_DIR=dist-dev
@@ -346,15 +345,15 @@ VITE_OUTPUT_DIR=dist-dev
 ### 4.2 .env.production
 
 ```env
-VITE_APP_TITLE=环球汇通管理后台
+VITE_APP_TITLE=GlobalFX Admin Backend
 VITE_API_BASE_URL=https://api.fx-platform.com
 VITE_BUILD_ENV=production
 VITE_OUTPUT_DIR=dist
 ```
 
-## 5. Nginx 配置
+## 5. Nginx Configuration
 
-### 5.1 交易终端 Nginx 配置
+### 5.1 Trading Terminal Nginx Configuration
 
 ```nginx
 upstream fx_trader_backend {
@@ -366,7 +365,7 @@ server {
     listen 443 ssl http2;
     server_name fx-platform.com;
     
-    # SSL配置
+    # SSL configuration
     ssl_certificate /etc/nginx/ssl/fx-platform.com.pem;
     ssl_certificate_key /etc/nginx/ssl/fx-platform.com.key;
     ssl_protocols TLSv1.2 TLSv1.3;
@@ -375,11 +374,11 @@ server {
     ssl_session_cache shared:SSL:10m;
     ssl_session_timeout 10m;
     
-    # 前端静态资源
+    # Frontend static resources
     root /usr/share/nginx/html/fx-trader;
     index index.html;
     
-    # Gzip压缩
+    # Gzip compression
     gzip on;
     gzip_vary on;
     gzip_proxied any;
@@ -387,20 +386,20 @@ server {
     gzip_types text/plain text/css text/xml application/json application/javascript application/rss+xml application/atom+xml image/svg+xml;
     gzip_min_length 1000;
     
-    # 前端路由
+    # Frontend routing
     location / {
         try_files $uri $uri/ /index.html;
         expires 7d;
         add_header Cache-Control "public, no-transform";
     }
     
-    # 静态资源缓存
+    # Static resource caching
     location /assets/ {
         expires 1y;
         add_header Cache-Control "public, immutable";
     }
     
-    # API代理
+    # API proxy
     location /api/ {
         proxy_pass http://fx_trader_backend/api/;
         proxy_http_version 1.1;
@@ -410,16 +409,16 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Connection "";
         
-        # 超时配置
+        # Timeout configuration
         proxy_connect_timeout 60s;
         proxy_read_timeout 120s;
         proxy_send_timeout 60s;
         
-        # 限流
+        # Rate limiting
         limit_req zone=api_limit burst=100 nodelay;
     }
     
-    # WebSocket代理
+    # WebSocket proxy
     location /ws/ {
         proxy_pass http://fx_trader_backend/ws/;
         proxy_http_version 1.1;
@@ -430,16 +429,16 @@ server {
         proxy_read_timeout 86400;
     }
     
-    # 文件上传大小限制
+    # File upload size limit
     client_max_body_size 20m;
     
-    # 安全头
+    # Security headers
     add_header X-Frame-Options "SAMEORIGIN" always;
     add_header X-Content-Type-Options "nosniff" always;
     add_header X-XSS-Protection "1; mode=block" always;
 }
 
-# HTTP重定向到HTTPS
+# HTTP redirect to HTTPS
 server {
     listen 80;
     server_name fx-platform.com;
@@ -447,7 +446,7 @@ server {
 }
 ```
 
-### 5.2 管理后台 Nginx 配置
+### 5.2 Admin Backend Nginx Configuration
 
 ```nginx
 upstream fx_admin_backend {
@@ -494,26 +493,26 @@ server {
 }
 ```
 
-## 6. Docker 配置
+## 6. Docker Configuration
 
-### 6.1 Java 后端 Dockerfile
+### 6.1 Java Backend Dockerfile
 
 ```dockerfile
-# 构建阶段
+# Build stage
 FROM eclipse-temurin:17-jdk-alpine AS builder
 
 WORKDIR /build
 
-# 复制Maven依赖
+# Copy Maven dependencies
 COPY pom.xml .
 RUN apt-get update && apt-get install -y maven
 RUN mvn dependency:go-offline -B
 
-# 复制源代码并构建
+# Copy source code and build
 COPY src ./src
 RUN mvn clean package -DskipTests -Pprod
 
-# 运行阶段
+# Runtime stage
 FROM eclipse-temurin:17-jre-alpine
 
 LABEL maintainer="GlobalFX Tech Team <tech@globalfx.com>"
@@ -521,14 +520,14 @@ LABEL version="1.0.0"
 
 WORKDIR /app
 
-# 从构建阶段复制jar包
+# Copy jar from build stage
 COPY --from=builder /build/target/*.jar app.jar
 
-# 健康检查
+# Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD wget --no-verbose --tries=1 --spider http://localhost:8081/actuator/health || exit 1
 
-# 环境变量
+# Environment variables
 ENV JAVA_OPTS="-Xms512m -Xmx2048m -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
 ENV SPRING_PROFILES_ACTIVE=prod
 ENV TZ=Asia/Shanghai
@@ -538,41 +537,41 @@ EXPOSE 8081
 ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar app.jar"]
 ```
 
-### 6.2 Go 服务 Dockerfile
+### 6.2 Go Service Dockerfile
 
 ```dockerfile
-# 构建阶段
+# Build stage
 FROM golang:1.21-alpine AS builder
 
 WORKDIR /build
 
-# 安装构建依赖
+# Install build dependencies
 RUN apk add --no-cache git ca-certificates tzdata
 
-# 复制源代码
+# Copy source code
 COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
 
-# 编译
+# Compile
 ARG TARGETOS=linux
 ARG TARGETARCH=amd64
 RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -ldflags="-w -s" -o fx-quote ./cmd/server
 
-# 运行阶段
+# Runtime stage
 FROM alpine:3.19
 
 WORKDIR /app
 
-# 安装运行时依赖
+# Install runtime dependencies
 RUN apk add --no-cache ca-certificates tzdata
 
-# 从构建阶段复制二进制文件
+# Copy binary from build stage
 COPY --from=builder /build/fx-quote /app/fx-quote
 COPY --from=builder /build/config.yaml /app/config.yaml
 
-# 健康检查
+# Health check
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD wget --no-verbose --tries=1 --spider http://localhost:8082/health || exit 1
 
@@ -583,35 +582,35 @@ EXPOSE 8082
 CMD ["/app/fx-quote"]
 ```
 
-### 6.3 React 前端 Dockerfile
+### 6.3 React Frontend Dockerfile
 
 ```dockerfile
-# 构建阶段
+# Build stage
 FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# 安装依赖
+# Install dependencies
 COPY package*.json ./
 RUN npm ci --only=production
 
-# 复制源代码
+# Copy source code
 COPY . .
 
-# 构建生产版本
+# Build production version
 ARG VITE_BUILD_ENV=production
 RUN npm run build
 
-# 运行阶段
+# Runtime stage
 FROM nginx:alpine
 
-# 复制构建产物
+# Copy build artifacts
 COPY --from=builder /app/dist /usr/share/nginx/html/fx-trader
 
-# 复制Nginx配置
+# Copy Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# 健康检查
+# Health check
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD wget --no-verbose --tries=1 --spider http://localhost:80/index.html || exit 1
 
@@ -620,13 +619,13 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
-### 6.4 Docker Compose 开发环境
+### 6.4 Docker Compose Development Environment
 
 ```yaml
 version: '3.8'
 
 services:
-  # PostgreSQL 数据库
+  # PostgreSQL database
   postgres:
     image: postgres:15-alpine
     container_name: fx-postgres
@@ -648,7 +647,7 @@ services:
     networks:
       - fx-network
 
-  # Redis 缓存
+  # Redis cache
   redis:
     image: redis:7-alpine
     container_name: fx-redis
@@ -693,7 +692,7 @@ services:
     networks:
       - fx-network
 
-  # 后端服务
+  # Backend service
   fx-trade-core:
     build:
       context: ./fx-trade-core
@@ -721,7 +720,7 @@ services:
     networks:
       - fx-network
 
-  # 前端开发服务
+  # Frontend development service
   fx-trader-web:
     image: node:18-alpine
     container_name: fx-trader-web-dev
@@ -745,9 +744,9 @@ volumes:
   redis_data:
 ```
 
-## 7. Kubernetes 部署配置
+## 7. Kubernetes Deployment Configuration
 
-### 7.1 交易核心服务 Deployment
+### 7.1 Trading Core Service Deployment
 
 ```yaml
 apiVersion: apps/v1
@@ -827,7 +826,7 @@ spec:
                 topologyKey: kubernetes.io/hostname
 ```
 
-### 7.2 HPA 自动扩缩容配置
+### 7.2 HPA Autoscaling Configuration
 
 ```yaml
 apiVersion: autoscaling/v2
